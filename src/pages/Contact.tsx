@@ -156,11 +156,11 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Map embed placeholder */}
+            {/* Map — GPS Rue Raphaël Barquisseau, Fleurimont */}
             <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl overflow-hidden">
               <iframe
-                title="Localisation CAS'O Burgers"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3737.123456789!2d55.4767!3d-20.8789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFleurimont%2C%20La%20R%C3%A9union!5e0!3m2!1sfr!2sfr!4v1234567890"
+                title="Localisation CAS'O Burgers — Rue Raphaël Barquisseau, Fleurimont"
+                src="https://maps.google.com/maps?q=Rue+Rapha%C3%ABl+Barquisseau%2C+Fleurimont%2C+La+R%C3%A9union&output=embed&z=16"
                 width="100%"
                 height="220"
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}

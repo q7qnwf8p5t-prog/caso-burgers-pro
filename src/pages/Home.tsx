@@ -81,9 +81,9 @@ export default function Home() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             {[
               { value: '11', label: 'Burgers au menu' },
-              { value: '100%', label: 'Produits frais' },
-              { value: 'à min.', label: 'Préparé' },
               { value: '7€', label: 'À partir de' },
+              { value: '+3€', label: 'Menu + frites' },
+              { value: '100%', label: 'Fait maison' },
             ].map((stat) => (
               <div key={stat.label} className="py-2">
                 <div className="font-display text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
