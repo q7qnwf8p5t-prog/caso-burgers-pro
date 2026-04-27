@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, MapPin, Phone, Clock, Star, ChefHat, Leaf, Zap } from 'lucide-react'
-import { menuItems } from '../data/menu'
+import { burgers } from '../data/menu'
 
-const featured = menuItems.filter((i) => i.badge === 'bestseller').slice(0, 3)
+const featured = burgers.filter((b) => b.badge === 'bestseller').slice(0, 3)
 
-const burgerPlaceholders = [
+const burgerImgs = [
   'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80',
   'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=600&q=80',
   'https://images.unsplash.com/photo-1542574271-7f3b92e6c821?w=600&q=80',
@@ -17,33 +17,25 @@ export default function Home() {
     <div className="bg-[#0A0A0A]">
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${heroImg}')` }}
-        />
-        {/* Overlay */}
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${heroImg}')` }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/85 to-[#0A0A0A]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
           <div className="max-w-2xl">
-            {/* Badge */}
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#E8540A]/40 bg-[#E8540A]/10 text-[#E8540A] text-xs font-display tracking-widest uppercase mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8540A] animate-pulse" />
               Fleurimont, La Réunion
             </span>
 
-            <h1
-              className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase leading-none tracking-tight text-[#F5F0E8] mb-6"
-            >
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase leading-none tracking-tight text-[#F5F0E8] mb-6">
               Des Burgers<br />
               <span className="text-[#E8540A]">Qui Déchirent</span>
             </h1>
 
             <p className="font-body text-base sm:text-lg text-[#D4CEC4] leading-relaxed max-w-lg mb-8">
               Artisanaux, généreux, irrésistibles. Chaque burger est préparé à la minute
-              avec des ingrédients locaux frais. Le goût de La Réunion dans chaque bouchée.
+              avec des produits frais. Le goût de La Réunion dans chaque bouchée.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -63,7 +55,6 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Quick info */}
             <div className="flex flex-wrap gap-6 mt-10 pt-8 border-t border-[#2A2A2A]">
               <div className="flex items-center gap-2 text-sm text-[#8A8A8A]">
                 <MapPin size={14} className="text-[#E8540A]" />
@@ -89,18 +80,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             {[
-              { value: '20+', label: 'Burgers au menu' },
+              { value: '11', label: 'Burgers au menu' },
               { value: '100%', label: 'Produits frais' },
-              { value: '5 min', label: 'Préparation' },
-              { value: '200+', label: 'Clients satisfaits' },
+              { value: 'à min.', label: 'Préparé' },
+              { value: '7€', label: 'À partir de' },
             ].map((stat) => (
               <div key={stat.label} className="py-2">
-                <div className="font-display text-2xl sm:text-3xl font-bold text-white">
-                  {stat.value}
-                </div>
-                <div className="font-body text-xs text-white/80 tracking-wide mt-0.5">
-                  {stat.label}
-                </div>
+                <div className="font-display text-2xl sm:text-3xl font-bold text-white">{stat.value}</div>
+                <div className="font-body text-xs text-white/80 tracking-wide mt-0.5">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -138,7 +125,7 @@ export default function Home() {
               >
                 <div className="relative h-52 overflow-hidden">
                   <img
-                    src={burgerPlaceholders[i]}
+                    src={burgerImgs[i]}
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
@@ -155,10 +142,15 @@ export default function Home() {
                   <p className="font-body text-sm text-[#8A8A8A] leading-relaxed mb-4">
                     {item.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-display text-2xl font-bold text-[#E8540A]">
-                      {item.price.toFixed(2)} €
-                    </span>
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <div className="font-display text-2xl font-bold text-[#E8540A]">
+                        {item.priceAlone.toFixed(2)} €
+                      </div>
+                      <div className="font-body text-xs text-[#8A8A8A]">
+                        Menu + frites : {item.priceMenu.toFixed(2)} €
+                      </div>
+                    </div>
                     <span className="text-xs font-body text-[#8A8A8A] group-hover:text-[#E8540A] transition-colors uppercase tracking-wider">
                       Commander →
                     </span>
@@ -170,7 +162,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHY US ── */}
+      {/* ── ENGAGEMENTS ── */}
       <section className="py-20 sm:py-28 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
@@ -186,18 +178,18 @@ export default function Home() {
             {[
               {
                 icon: <ChefHat size={28} />,
-                title: 'Fait Maison',
-                desc: 'Chaque burger est préparé à la commande. Pain brioche maison, sauces exclusives, viande fraîche du jour.',
+                title: 'Pain Artisanal',
+                desc: 'Notre pain brioche est fabriqué par un boulanger artisan local. Moelleux, savoureux, à la hauteur de nos garnitures.',
               },
               {
                 icon: <Leaf size={28} />,
-                title: 'Produits Locaux',
-                desc: 'Partenariat avec des producteurs réunionnais. Fruits, légumes et épices cultivés dans notre île.',
+                title: 'Produits de Qualité',
+                desc: 'Steack haché 125g bœuf origine France, légumes issus d\'une agriculture raisonnée, miel réunionnais de la Ruche La Kour.',
               },
               {
                 icon: <Zap size={28} />,
-                title: 'Rapide & Frais',
-                desc: 'Vente à emporter express. Commandez par téléphone et récupérez votre repas en quelques minutes.',
+                title: 'Fait Maison',
+                desc: 'Poulet citron, poulet crispy, steack végétarien et poisson sont préparés maison. Tout est frais, à la commande.',
               },
             ].map((card) => (
               <div
@@ -210,9 +202,7 @@ export default function Home() {
                 <h3 className="font-display text-xl font-semibold uppercase text-[#F5F0E8] mb-2">
                   {card.title}
                 </h3>
-                <p className="font-body text-sm text-[#8A8A8A] leading-relaxed">
-                  {card.desc}
-                </p>
+                <p className="font-body text-sm text-[#8A8A8A] leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
@@ -223,38 +213,19 @@ export default function Home() {
       <section className="py-20 sm:py-28 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Image grid */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-3">
-                <img
-                  src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500&q=80"
-                  alt="Burger artisanal"
-                  className="rounded-xl w-full h-52 object-cover"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=500&q=80"
-                  alt="Ingrédients frais"
-                  className="rounded-xl w-full h-52 object-cover mt-8"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=500&q=80"
-                  alt="Préparation"
-                  className="rounded-xl w-full h-40 object-cover"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&q=80"
-                  alt="Food truck"
-                  className="rounded-xl w-full h-40 object-cover mt-4"
-                />
+                <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=500&q=80" alt="Burger artisanal" className="rounded-xl w-full h-52 object-cover" />
+                <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=500&q=80" alt="Ingrédients frais" className="rounded-xl w-full h-52 object-cover mt-8" />
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=500&q=80" alt="Préparation" className="rounded-xl w-full h-40 object-cover" />
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&q=80" alt="Food truck" className="rounded-xl w-full h-40 object-cover mt-4" />
               </div>
-              {/* Floating badge */}
               <div className="absolute -bottom-4 -right-4 bg-[#E8540A] text-white rounded-2xl p-4 text-center hidden sm:block">
-                <div className="font-display text-3xl font-bold leading-none">2+</div>
-                <div className="font-body text-xs mt-1 leading-tight">ans d'expérience</div>
+                <div className="font-display text-3xl font-bold leading-none">7€</div>
+                <div className="font-body text-xs mt-1 leading-tight">à partir de</div>
               </div>
             </div>
 
-            {/* Text */}
             <div>
               <p className="font-display text-xs tracking-[0.3em] uppercase text-[#E8540A] mb-3">
                 Notre histoire
@@ -284,7 +255,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
+      {/* ── TÉMOIGNAGES ── */}
       <section className="py-20 sm:py-28 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -299,24 +270,21 @@ export default function Home() {
             {[
               {
                 name: 'Marie-Claude R.',
-                text: 'Le meilleur burger de La Réunion ! Le Réunionnais avec son rougail mangue est une tuerie absolue. Je reviens chaque semaine !',
+                text: 'Le Chèvre avec son miel de baies roses de la Ruche La Kour est une tuerie ! Jamais mangé quelque chose d\'aussi original. Je reviens chaque semaine !',
                 rating: 5,
               },
               {
                 name: 'Sébastien M.',
-                text: 'Pain brioche ultra moelleux, viande juteuse, frites maison croustillantes. Impossible de revenir aux fast-foods classiques après ça.',
+                text: 'Pain brioche artisanal ultra moelleux, viande juteuse bœuf France, frites maison. Le Foie Gras est un chef-d\'œuvre. Impossible de revenir en arrière.',
                 rating: 5,
               },
               {
                 name: 'Anaïs V.',
-                text: 'Le Végétal est parfait même pour les non-végétariens. La sauce yaourt-citron est incroyable. Service rapide et super sympa !',
+                text: 'Le Végétarien est parfait même pour les non-végétariens. La persillade maison est incroyable. Service rapide, super sympa, prix honnêtes !',
                 rating: 5,
               },
             ].map((review) => (
-              <div
-                key={review.name}
-                className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6"
-              >
+              <div key={review.name} className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
                 <div className="flex gap-1 mb-3">
                   {Array.from({ length: review.rating }).map((_, i) => (
                     <Star key={i} size={14} className="text-[#F59E0B] fill-[#F59E0B]" />
@@ -340,7 +308,7 @@ export default function Home() {
             <span className="text-[#E8540A]">Vous Régaler ?</span>
           </h2>
           <p className="font-body text-[#8A8A8A] text-lg mb-10">
-            Appelez-nous ou venez directement. On vous prépare votre burger à la minute.
+            Appelez-nous et récupérez votre commande en quelques minutes.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
@@ -348,7 +316,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#E8540A] hover:bg-[#FF6B20] text-white font-display text-base tracking-widest uppercase rounded transition-all duration-200 hover:scale-105"
             >
               <Phone size={18} />
-              Appeler maintenant
+              0693 50 07 34
             </a>
             <Link
               to="/menu"

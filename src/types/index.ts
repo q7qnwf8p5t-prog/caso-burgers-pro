@@ -2,18 +2,34 @@ export interface MenuItem {
   id: string
   name: string
   description: string
-  price: number
+  priceAlone: number
+  priceMenu: number
   category: MenuCategory
-  badge?: 'bestseller' | 'new' | 'spicy' | 'vegan'
-  extras?: string[]
+  badge?: 'bestseller' | 'new' | 'spicy' | 'vegan' | 'premium'
+}
+
+export interface Supplement {
+  id: string
+  name: string
+  price: number
+}
+
+export interface Drink {
+  id: string
+  name: string
+  format: string
+  price: number
+}
+
+export interface FrozenBar {
+  name: string
 }
 
 export type MenuCategory =
-  | 'burgers-classiques'
-  | 'burgers-speciaux'
-  | 'accompagnements'
+  | 'burgers'
   | 'boissons'
-  | 'desserts'
+  | 'supplements'
+  | 'barres-glacees'
 
 export interface CategoryInfo {
   id: MenuCategory
