@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-caso-black: #0A0A0A;
+  --color-caso-dark: #111111;
+  --color-caso-charcoal: #1A1A1A;
+  --color-caso-card: #1E1E1E;
+  --color-caso-border: #2A2A2A;
+  --color-caso-orange: #E8540A;
+  --color-caso-orange-hover: #FF6B20;
+  --color-caso-amber: #F59E0B;
+  --color-caso-cream: #F5F0E8;
+  --color-caso-muted: #8A8A8A;
+  --color-caso-light: #D4CEC4;
+
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: #0A0A0A;
+    color: #F5F0E8;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+}
